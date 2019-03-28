@@ -1,0 +1,128 @@
+@import 'mixins';
+@import 'settings';
+
+// Background of the presentation
+$backgroundColor: #fff;
+
+// Primary/body text
+$mainFont: 'Roboto', sans-serif;
+$mainFontSize: 32px;
+$mainColor: #000;
+
+// Vertical spacing between blocks of text
+$blockMargin: 20px;
+
+// Headings
+$headingMargin: 0 0 $blockMargin 0;
+$headingFont: 'Roboto', sans-serif;
+$headingColor: #0747A6;
+$headingLineHeight: 1.2;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingTextShadow: none;
+$headingFontWeight: bold;
+$heading1TextShadow: $headingTextShadow;
+
+$heading1Size: 3.77em;
+$heading2Size: 2.11em;
+$heading3Size: 1.55em;
+$heading4Size: 1.00em;
+
+// Links and actions
+$linkColor: #0052CC;
+$linkColorHover: lighten( $linkColor, 20% );
+
+// Text selection
+$selectionBackgroundColor: #00B8D9;
+$selectionColor: #000;
+
+// Generates the presentation background, can be overridden
+// to return a background image or gradient
+@mixin bodyBackground() {
+  background: $backgroundColor;
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg) translate(0, 0);
+    }
+    50% {
+      transform: rotate(180deg) translate(3%, 3%);
+    }
+    100% {
+      transform: rotate(360deg) translate(0, 0);
+    }
+  }
+
+  &::after {
+    content: "";
+    opacity: 0.1;
+    top: 25%;
+    left: -25%;
+    width: 200%;
+    height: 200%;
+    background-size: 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-image: url(../assets/graphql-logo.svg);
+    z-index: -1;
+    filter: grayscale(100%);
+    animation: spin 300s infinite;
+    animation-timing-function: linear;
+  }
+}
+
+@import 'theme';
+
+h1, h2, h3, h4 {
+  border-bottom: 4px solid #FFAB00;
+  border-width: 50px;
+}
+
+.reveal .slides.slides {
+  text-align: left;
+}
+
+.heading {
+  &#{&} {
+    margin-bottom: 64px;
+    font-size: 0.8em;
+    letter-spacing: -0.5px;
+    text-transform: uppercase;
+  }
+
+  &:after {
+    content: '';
+    max-width: 150px;
+    display: block;
+    padding-bottom: 20px;
+    border-bottom: 5px solid #FFAB00;
+  }
+}
+
+.main-slide {
+  &#{&}#{&} {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+
+    .slide-background-content {
+      background-color: #0052CC;
+    }
+
+    h1, h2, h3, h4 {
+      color: #fff;
+    }
+
+    .name {
+      margin-top: 80px;
+    }
+  }
+}
+
+.quote {
+  &#{&} {
+    font-size: 1.00em;
+    color:  #0747A6;
+    font-weight: bold;
+  }
+}
